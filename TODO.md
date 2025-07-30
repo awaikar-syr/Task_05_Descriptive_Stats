@@ -15,25 +15,25 @@
 
 ## 🔄 Current Tasks
 
-### Phase 1: Dataset Selection (In Progress)
-- [ ] Research available SU sports datasets
-- [ ] Research cricket team datasets (alternative option)
-- [ ] Evaluate dataset size and complexity
-- [ ] Download selected dataset
-- [ ] Prepare dataset for analysis
-- [ ] Update data processing script for specific dataset
+### Phase 1: Dataset Selection ✅
+- [x] Research available SU sports datasets
+- [x] Research cricket team datasets (alternative option)
+- [x] Evaluate dataset size and complexity
+- [x] Download selected dataset
+- [x] Prepare dataset for analysis
+- [x] Update data processing script for specific dataset
 
 ---
 
 ## 📋 Upcoming Tasks
 
-### Phase 2: Basic Data Analysis & Validation
-- [ ] Load dataset into analysis script
-- [ ] Perform basic descriptive statistics
-- [ ] Generate baseline analysis results
-- [ ] Create initial visualizations
-- [ ] Document dataset structure and characteristics
-- [ ] Export baseline analysis for LLM validation
+### Phase 2: Basic Data Analysis & Validation ✅
+- [x] Load dataset into analysis script
+- [x] Perform basic descriptive statistics
+- [x] Generate baseline analysis results
+- [x] Create initial visualizations
+- [x] Document dataset structure and characteristics
+- [x] Export baseline analysis for LLM validation
 
 ### Phase 3: Initial LLM Testing
 - [ ] Test basic questions with ChatGPT
