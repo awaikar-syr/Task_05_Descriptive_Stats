@@ -14,14 +14,17 @@ from dataclasses import dataclass
 from enum import Enum
 
 class LLMProvider(Enum):
-    """Available LLM providers through OpenRouter"""
-    OPENAI_GPT4 = "openai/gpt-4"
-    OPENAI_GPT35 = "openai/gpt-3.5-turbo"
-    ANTHROPIC_CLAUDE = "anthropic/claude-3-opus"
-    ANTHROPIC_CLAUDE_SONNET = "anthropic/claude-3-sonnet"
-    GOOGLE_GEMINI = "google/gemini-pro"
-    META_LLAMA = "meta-llama/llama-2-70b-chat"
-    MISTRAL = "mistralai/mistral-7b-instruct"
+    """Available LLM providers through OpenRouter - Optimized for cost efficiency"""
+    # Cheapest options first
+    MISTRAL_7B = "mistralai/mistral-7b-instruct"  # ~$0.0002 per 1K tokens
+    LLAMA_2_7B = "meta-llama/llama-2-7b-chat"     # ~$0.0002 per 1K tokens
+    LLAMA_2_13B = "meta-llama/llama-2-13b-chat"   # ~$0.0003 per 1K tokens
+    GOOGLE_GEMINI_PRO = "google/gemini-pro"        # ~$0.0005 per 1K tokens
+    OPENAI_GPT35 = "openai/gpt-3.5-turbo"         # ~$0.0015 per 1K tokens
+    ANTHROPIC_CLAUDE_HAIKU = "anthropic/claude-3-haiku"  # ~$0.0025 per 1K tokens
+    # More expensive options (for comparison)
+    OPENAI_GPT4 = "openai/gpt-4"                  # ~$0.03 per 1K tokens
+    ANTHROPIC_CLAUDE_OPUS = "anthropic/claude-3-opus"     # ~$0.015 per 1K tokens
 
 @dataclass
 class LLMResponse:
@@ -101,6 +104,32 @@ class LLMTester:
         except Exception as e:
             print(f"Error loading basketball data: {e}")
             return ""
+    
+    def calculate_cost(self, model: str, tokens_used: int) -> float:
+        """
+        Calculate the cost of API usage based on model and tokens
+        
+        Args:
+            model (str): Model identifier
+            tokens_used (int): Number of tokens used
+            
+        Returns:
+            float: Cost in USD
+        """
+        # Cost per 1K tokens (approximate OpenRouter pricing)
+        cost_per_1k = {
+            "mistralai/mistral-7b-instruct": 0.0002,
+            "meta-llama/llama-2-7b-chat": 0.0002,
+            "meta-llama/llama-2-13b-chat": 0.0003,
+            "google/gemini-pro": 0.0005,
+            "openai/gpt-3.5-turbo": 0.0015,
+            "anthropic/claude-3-haiku": 0.0025,
+            "anthropic/claude-3-opus": 0.015,
+            "openai/gpt-4": 0.03
+        }
+        
+        cost_per_token = cost_per_1k.get(model, 0.001) / 1000
+        return tokens_used * cost_per_token
     
     def send_prompt(self, model: str, prompt: str, max_tokens: int = 2000) -> Dict:
         """
@@ -198,9 +227,9 @@ class LLMTester:
         ]
         
         models_to_test = [
-            LLMProvider.OPENAI_GPT4.value,
-            LLMProvider.ANTHROPIC_CLAUDE.value,
-            LLMProvider.GOOGLE_GEMINI.value
+            LLMProvider.MISTRAL_7B.value,           # Cheapest: ~$0.0002 per 1K tokens
+            LLMProvider.LLAMA_2_7B.value,           # Cheapest: ~$0.0002 per 1K tokens
+            LLMProvider.GOOGLE_GEMINI_PRO.value     # Very cheap: ~$0.0005 per 1K tokens
         ]
         
         responses = []
@@ -214,16 +243,20 @@ class LLMTester:
                 result = self.send_prompt(model, full_prompt)
                 
                 if result["success"]:
+                    tokens_used = result["usage"].get("total_tokens", 0) if "usage" in result else 0
+                    cost = self.calculate_cost(model, tokens_used)
+                    
                     response = LLMResponse(
                         provider=model.split('/')[0],
                         model=model,
                         prompt=q['question'],
                         response=result["response"],
                         response_time=result["response_time"],
-                        tokens_used=result["usage"].get("total_tokens", 0) if "usage" in result else 0
+                        tokens_used=tokens_used,
+                        cost=cost
                     )
                     responses.append(response)
-                    print(f"✓ {q['question'][:50]}... - {result['response_time']:.2f}s")
+                    print(f"✓ {q['question'][:50]}... - {result['response_time']:.2f}s - ${cost:.4f}")
                 else:
                     print(f"✗ Error with {model}: {result['error']}")
                 
@@ -261,8 +294,9 @@ class LLMTester:
         ]
         
         models_to_test = [
-            LLMProvider.OPENAI_GPT4.value,
-            LLMProvider.ANTHROPIC_CLAUDE.value
+            LLMProvider.MISTRAL_7B.value,           # Cheapest: ~$0.0002 per 1K tokens
+            LLMProvider.GOOGLE_GEMINI_PRO.value,    # Very cheap: ~$0.0005 per 1K tokens
+            LLMProvider.OPENAI_GPT35.value          # Affordable: ~$0.0015 per 1K tokens
         ]
         
         responses = []
@@ -276,16 +310,20 @@ class LLMTester:
                 result = self.send_prompt(model, full_prompt, max_tokens=1000)
                 
                 if result["success"]:
+                    tokens_used = result["usage"].get("total_tokens", 0) if "usage" in result else 0
+                    cost = self.calculate_cost(model, tokens_used)
+                    
                     response = LLMResponse(
                         provider=model.split('/')[0],
                         model=model,
                         prompt=q['question'],
                         response=result["response"],
                         response_time=result["response_time"],
-                        tokens_used=result["usage"].get("total_tokens", 0) if "usage" in result else 0
+                        tokens_used=tokens_used,
+                        cost=cost
                     )
                     responses.append(response)
-                    print(f"✓ {q['question'][:50]}... - {result['response_time']:.2f}s")
+                    print(f"✓ {q['question'][:50]}... - {result['response_time']:.2f}s - ${cost:.4f}")
                 else:
                     print(f"✗ Error with {model}: {result['error']}")
                 
@@ -319,8 +357,9 @@ class LLMTester:
         ]
         
         models_to_test = [
-            LLMProvider.OPENAI_GPT4.value,
-            LLMProvider.ANTHROPIC_CLAUDE.value
+            LLMProvider.MISTRAL_7B.value,           # Cheapest: ~$0.0002 per 1K tokens
+            LLMProvider.GOOGLE_GEMINI_PRO.value,    # Very cheap: ~$0.0005 per 1K tokens
+            LLMProvider.OPENAI_GPT35.value          # Affordable: ~$0.0015 per 1K tokens
         ]
         
         responses = []
@@ -334,16 +373,20 @@ class LLMTester:
                 result = self.send_prompt(model, full_prompt, max_tokens=1500)
                 
                 if result["success"]:
+                    tokens_used = result["usage"].get("total_tokens", 0) if "usage" in result else 0
+                    cost = self.calculate_cost(model, tokens_used)
+                    
                     response = LLMResponse(
                         provider=model.split('/')[0],
                         model=model,
                         prompt=q['question'],
                         response=result["response"],
                         response_time=result["response_time"],
-                        tokens_used=result["usage"].get("total_tokens", 0) if "usage" in result else 0
+                        tokens_used=tokens_used,
+                        cost=cost
                     )
                     responses.append(response)
-                    print(f"✓ {q['question'][:50]}... - {result['response_time']:.2f}s")
+                    print(f"✓ {q['question'][:50]}... - {result['response_time']:.2f}s - ${cost:.4f}")
                 else:
                     print(f"✗ Error with {model}: {result['error']}")
                 
@@ -486,12 +529,23 @@ class LLMTester:
         print("📊 TESTING SUMMARY")
         print("=" * 60)
         
+        total_cost = sum(r.cost for r in self.responses if r.cost is not None)
+        total_tokens = sum(r.tokens_used for r in self.responses if r.tokens_used is not None)
+        
+        print(f"\n💰 COST SUMMARY:")
+        print(f"  Total Cost: ${total_cost:.4f}")
+        print(f"  Total Tokens: {total_tokens:,}")
+        print(f"  Average Cost per Response: ${total_cost/len(self.responses):.4f}")
+        
+        print(f"\n📈 ACCURACY BY MODEL:")
         for model, results in self.test_results.items():
             print(f"\n{model}:")
             print(f"  Accuracy: {results['accuracy']:.1%} ({results['correct']}/{results['total']})")
         
-        print(f"\nTotal responses collected: {len(self.responses)}")
-        print("Results saved to results/llm_testing_results.json")
+        print(f"\n📊 RESPONSE SUMMARY:")
+        print(f"  Total responses collected: {len(self.responses)}")
+        print(f"  Models tested: {len(set(r.model for r in self.responses))}")
+        print("  Results saved to results/llm_testing_results.json")
 
 def main():
     """

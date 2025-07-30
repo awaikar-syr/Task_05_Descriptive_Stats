@@ -10,22 +10,21 @@ Based on the task instructions, you need to test **multiple LLMs**:
 
 ### Available Models Through OpenRouter
 
-Our testing framework includes these models:
+Our testing framework includes these models (optimized for cost efficiency):
 
-1. **OpenAI Models:**
-   - `openai/gpt-4` - GPT-4 (most capable)
-   - `openai/gpt-3.5-turbo` - GPT-3.5 (faster, cheaper)
+1. **Cheapest Models (Recommended for Testing):**
+   - `mistralai/mistral-7b-instruct` - Mistral 7B (~$0.0002 per 1K tokens)
+   - `meta-llama/llama-2-7b-chat` - Llama 2 7B (~$0.0002 per 1K tokens)
+   - `meta-llama/llama-2-13b-chat` - Llama 2 13B (~$0.0003 per 1K tokens)
 
-2. **Anthropic Models:**
-   - `anthropic/claude-3-opus` - Claude 3 Opus (most capable)
-   - `anthropic/claude-3-sonnet` - Claude 3 Sonnet (balanced)
+2. **Very Affordable Models:**
+   - `google/gemini-pro` - Google Gemini Pro (~$0.0005 per 1K tokens)
+   - `openai/gpt-3.5-turbo` - GPT-3.5 Turbo (~$0.0015 per 1K tokens)
+   - `anthropic/claude-3-haiku` - Claude 3 Haiku (~$0.0025 per 1K tokens)
 
-3. **Google Models:**
-   - `google/gemini-pro` - Google Gemini Pro
-
-4. **Other Models:**
-   - `meta-llama/llama-2-70b-chat` - Meta's Llama 2
-   - `mistralai/mistral-7b-instruct` - Mistral AI
+3. **Premium Models (for comparison):**
+   - `anthropic/claude-3-opus` - Claude 3 Opus (~$0.015 per 1K tokens)
+   - `openai/gpt-4` - GPT-4 (~$0.03 per 1K tokens)
 
 ### Step-by-Step Setup
 
@@ -75,30 +74,36 @@ python3 scripts/llm_tester.py
 - Who is the leading scorer?
 - What is the team's record?
 
-**Models to test:** GPT-4, Claude 3 Opus, Gemini Pro
+**Models to test:** Mistral 7B, Llama 2 7B, Gemini Pro (cheapest options)
 
 #### Phase 2: Intermediate Questions (Testing Analysis)
 - Who are the top 3 scorers?
 - Which position has highest average points?
 - Who has the most rebounds per game?
 
-**Models to test:** GPT-4, Claude 3 Opus
+**Models to test:** Mistral 7B, Gemini Pro, GPT-3.5 Turbo (affordable options)
 
 #### Phase 3: Advanced Questions (Complex Analysis)
 - Define methodology for "most improved player"
 - Strategic coaching decisions
 - Offense vs defense focus
 
-**Models to test:** GPT-4, Claude 3 Opus
+**Models to test:** Mistral 7B, Gemini Pro, GPT-3.5 Turbo (affordable options)
 
 ### Cost Management
 
 OpenRouter pricing (approximate):
-- **GPT-4:** ~$0.03 per 1K tokens
-- **Claude 3 Opus:** ~$0.015 per 1K tokens
+- **Mistral 7B:** ~$0.0002 per 1K tokens (cheapest)
+- **Llama 2 7B:** ~$0.0002 per 1K tokens (cheapest)
+- **Llama 2 13B:** ~$0.0003 per 1K tokens
 - **Gemini Pro:** ~$0.0005 per 1K tokens
+- **GPT-3.5 Turbo:** ~$0.0015 per 1K tokens
+- **Claude 3 Haiku:** ~$0.0025 per 1K tokens
+- **Claude 3 Opus:** ~$0.015 per 1K tokens
+- **GPT-4:** ~$0.03 per 1K tokens (most expensive)
 
-**Estimated cost for full testing:** $2-5
+**Estimated cost for full testing with cheapest models:** $0.50-1.00
+**Estimated cost for full testing with premium models:** $5-10
 
 ### Expected Results
 
