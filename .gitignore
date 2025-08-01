@@ -4,13 +4,6 @@ data/*.xlsx
 data/*.json
 data/*.xls
 
-# Results and outputs
-results/*.png
-results/*.jpg
-results/*.jpeg
-results/*.pdf
-results/*.json
-
 # Python
 __pycache__/
 *.py[cod]

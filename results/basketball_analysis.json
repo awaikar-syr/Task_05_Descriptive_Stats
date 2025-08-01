@@ -1,0 +1,225 @@
+{
+  "basic_team_stats": {
+    "team_overview": {
+      "total_players": 11,
+      "total_games": 32,
+      "season_record": "24-8 (13-5 ACC)",
+      "ncaa_tournament": "Reached second round",
+      "final_ranking": "#20 AP"
+    },
+    "team_totals": {
+      "total_points": 2369,
+      "total_rebounds": 1194,
+      "total_assists": 403,
+      "total_steals": 296,
+      "total_blocks": 143,
+      "total_turnovers": 447
+    },
+    "team_averages": {
+      "points_per_game": 74.0,
+      "rebounds_per_game": 37.3,
+      "assists_per_game": 12.6,
+      "steals_per_game": 9.2,
+      "blocks_per_game": 4.5,
+      "turnovers_per_game": 14.0
+    },
+    "team_shooting": {
+      "field_goal_percentage": 41.6,
+      "three_point_percentage": 32.4,
+      "free_throw_percentage": 73.0
+    }
+  },
+  "player_rankings": {
+    "top_scorers": [
+      {
+        "Player": "Dyaisha Fair",
+        "Points_Per_Game": 22.2,
+        "Total_Points": 712
+      },
+      {
+        "Player": "Georgia Woolley",
+        "Points_Per_Game": 13.8,
+        "Total_Points": 401
+      },
+      {
+        "Player": "Alaina Rice",
+        "Points_Per_Game": 9.8,
+        "Total_Points": 305
+      },
+      {
+        "Player": "Alyssa Latham",
+        "Points_Per_Game": 8.6,
+        "Total_Points": 276
+      },
+      {
+        "Player": "Kyra Wood",
+        "Points_Per_Game": 6.1,
+        "Total_Points": 194
+      }
+    ],
+    "top_rebounders": [
+      {
+        "Player": "Alyssa Latham",
+        "Rebounds_Per_Game": 7.0,
+        "Total_Rebounds": 224
+      },
+      {
+        "Player": "Kyra Wood",
+        "Rebounds_Per_Game": 6.8,
+        "Total_Rebounds": 218
+      },
+      {
+        "Player": "Alaina Rice",
+        "Rebounds_Per_Game": 5.3,
+        "Total_Rebounds": 163
+      },
+      {
+        "Player": "Georgia Woolley",
+        "Rebounds_Per_Game": 4.8,
+        "Total_Rebounds": 139
+      },
+      {
+        "Player": "Dyaisha Fair",
+        "Rebounds_Per_Game": 4.6,
+        "Total_Rebounds": 146
+      }
+    ],
+    "top_assists": [
+      {
+        "Player": "Dyaisha Fair",
+        "Assists": 114
+      },
+      {
+        "Player": "Georgia Woolley",
+        "Assists": 87
+      },
+      {
+        "Player": "Alaina Rice",
+        "Assists": 68
+      },
+      {
+        "Player": "Sophie Burrows",
+        "Assists": 32
+      },
+      {
+        "Player": "Kennedi Perkins",
+        "Assists": 30
+      }
+    ],
+    "top_steals": [
+      {
+        "Player": "Dyaisha Fair",
+        "Steals": 76
+      },
+      {
+        "Player": "Georgia Woolley",
+        "Steals": 54
+      },
+      {
+        "Player": "Alaina Rice",
+        "Steals": 42
+      },
+      {
+        "Player": "Alyssa Latham",
+        "Steals": 38
+      },
+      {
+        "Player": "Kyra Wood",
+        "Steals": 25
+      }
+    ],
+    "top_blocks": [
+      {
+        "Player": "Alyssa Latham",
+        "Blocks": 42
+      },
+      {
+        "Player": "Kyra Wood",
+        "Blocks": 34
+      },
+      {
+        "Player": "Saniaa Wilson",
+        "Blocks": 15
+      },
+      {
+        "Player": "Georgia Woolley",
+        "Blocks": 12
+      },
+      {
+        "Player": "Izabel Varejao",
+        "Blocks": 12
+      }
+    ],
+    "most_efficient_shooters": [
+      {
+        "Player": "Saniaa Wilson",
+        "Field_Goal_Percentage": 0.568,
+        "Field_Goals_Made": 54,
+        "Field_Goals_Attempted": 95
+      },
+      {
+        "Player": "Kyra Wood",
+        "Field_Goal_Percentage": 0.526,
+        "Field_Goals_Made": 80,
+        "Field_Goals_Attempted": 152
+      },
+      {
+        "Player": "Izabel Varejao",
+        "Field_Goal_Percentage": 0.489,
+        "Field_Goals_Made": 43,
+        "Field_Goals_Attempted": 88
+      },
+      {
+        "Player": "Alyssa Latham",
+        "Field_Goal_Percentage": 0.46,
+        "Field_Goals_Made": 116,
+        "Field_Goals_Attempted": 252
+      },
+      {
+        "Player": "Kennedi Perkins",
+        "Field_Goal_Percentage": 0.413,
+        "Field_Goals_Made": 33,
+        "Field_Goals_Attempted": 80
+      }
+    ],
+    "best_3pt_shooters": [
+      {
+        "Player": "Dyaisha Fair",
+        "Three_Point_Percentage": 0.377,
+        "Three_Pointers_Made": 115,
+        "Three_Pointers_Attempted": 305
+      },
+      {
+        "Player": "Alaina Rice",
+        "Three_Point_Percentage": 0.315,
+        "Three_Pointers_Made": 28,
+        "Three_Pointers_Attempted": 89
+      },
+      {
+        "Player": "Georgia Woolley",
+        "Three_Point_Percentage": 0.289,
+        "Three_Pointers_Made": 37,
+        "Three_Pointers_Attempted": 128
+      },
+      {
+        "Player": "Alyssa Latham",
+        "Three_Point_Percentage": 0.286,
+        "Three_Pointers_Made": 6,
+        "Three_Pointers_Attempted": 21
+      },
+      {
+        "Player": "Sophie Burrows",
+        "Three_Point_Percentage": 0.269,
+        "Three_Pointers_Made": 28,
+        "Three_Pointers_Attempted": 104
+      }
+    ]
+  },
+  "position_analysis": {
+    "position_counts": {
+      "G": 6,
+      "F": 3,
+      "C": 2
+    },
+    "position_stats": {
+      
